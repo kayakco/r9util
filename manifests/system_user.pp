@@ -88,12 +88,15 @@ define r9util::system_user(
 
   $user = $title
 
+  # Workaround for https://tickets.puppetlabs.com/browse/PUP-4332
+  $comment = "${title}"
+
   user { $user:
     ensure     => $ensure,
     allowdupe  => false,
     home       => $homedir,
     managehome => $managehome,
-    comment    => $title,
+    comment    => $comment,
     gid        => $group,
     groups     => $groups,
     password   => $password,
